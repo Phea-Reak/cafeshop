@@ -7,23 +7,26 @@
     <div th:replace="~{base :: head}"></div>
     
     <style>
-        /* Modern Premium Café Vibe */
+  /* Modern Dark Tech/Creative Vibe */
 .booking-success-wrapper {
-    background: linear-gradient(135deg, #f7f3ee 0%, #fcfaf7 100%);
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
     min-height: 100vh;
     padding: 70px 0;
     font-family: 'Inter', sans-serif;
+    color: #e0e0e8;
 }
 
 .success-card {
-    background: rgba(255, 255, 255, 0.78);
-    backdrop-filter: blur(12px);
+    background: rgba(18, 20, 33, 0.85);
+    backdrop-filter: blur(15px);
     border-radius: 24px;
     padding: 55px 45px;
     max-width: 620px;
     margin: 0 auto;
-    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.07);
-    border: 1px solid rgba(216, 193, 168, 0.35);
+    box-shadow: 
+        0 12px 45px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(88, 101, 242, 0.1);
+    border: 1px solid rgba(88, 101, 242, 0.15);
     position: relative;
     overflow: hidden;
 }
@@ -34,8 +37,14 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, #d2a36c 0%, #bb8440 100%);
+    height: 4px;
+    background: linear-gradient(90deg, #5865F2 0%, #9B7EFA 50%, #EB459E 100%);
+    animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: calc(200px + 100%) 0; }
 }
 
 /* Icon */
@@ -47,20 +56,34 @@
 .success-icon {
     width: 85px;
     height: 85px;
-    background: linear-gradient(135deg, #d2a36c 0%, #bb8440 100%);
+    background: linear-gradient(135deg, #5865F2 0%, #9B7EFA 100%);
     color: white;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-size: 38px;
-    box-shadow: 0 10px 28px rgba(190, 145, 90, 0.45);
+    box-shadow: 
+        0 10px 28px rgba(88, 101, 242, 0.45),
+        0 0 0 4px rgba(88, 101, 242, 0.15);
     animation: scaleIn 0.55s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+.success-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 70%);
+    z-index: -1;
 }
 
 @keyframes scaleIn {
-    from { transform: scale(0.7); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from { transform: scale(0.7) rotate(-10deg); opacity: 0; }
+    to { transform: scale(1) rotate(0); opacity: 1; }
 }
 
 /* Header */
@@ -71,26 +94,32 @@
 
 .success-title {
     font-size: 2.15rem;
-    font-weight: 700;
-    color: #3a2416;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #9B7EFA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: -0.4px;
+    margin-bottom: 10px;
 }
 
 .success-subtitle {
     font-size: 1.05rem;
-    color: #7a6654;
+    color: #a0a0c0;
     max-width: 460px;
     line-height: 1.65;
     margin: 0 auto;
+    font-weight: 400;
 }
 
 /* Info Card */
 .booking-info-card {
-    background: rgba(252, 249, 245, 0.8);
+    background: rgba(30, 33, 57, 0.6);
     border-radius: 18px;
     padding: 32px;
     margin: 40px 0;
-    border: 1px solid rgba(220, 205, 188, 0.6);
+    border: 1px solid rgba(88, 101, 242, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .info-item {
@@ -98,7 +127,15 @@
     justify-content: space-between;
     align-items: center;
     padding: 18px 0;
-    border-bottom: 1px dashed #e6d7c4;
+    border-bottom: 1px solid rgba(88, 101, 242, 0.15);
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    background: rgba(88, 101, 242, 0.05);
+    margin: 0 -10px;
+    padding: 18px 10px;
+    border-radius: 8px;
 }
 
 .info-item:last-child {
@@ -108,34 +145,53 @@
 .info-label {
     font-size: 1rem;
     font-weight: 600;
-    color: #5a3f2e;
+    color: #c0c0e0;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
 .info-label i {
-    color: #d2a36c;
+    color: #9B7EFA;
     font-size: 1.15rem;
+    width: 24px;
+    text-align: center;
 }
 
 .info-value {
     font-size: 1rem;
     font-weight: 600;
-    color: #2b1c12;
+    color: #ffffff;
     text-align: right;
 }
 
 /* Status Badge */
 .status-badge {
-    background: linear-gradient(135deg, #23b157 0%, #18d8a9 100%);
+    background: linear-gradient(135deg, #23d160 0%, #1db954 100%);
     color: white;
     padding: 7px 22px;
     font-size: 0.9rem;
     border-radius: 40px;
     font-weight: 700;
     letter-spacing: 0.4px;
-    box-shadow: 0 5px 16px rgba(30, 187, 112, 0.35);
+    box-shadow: 0 5px 16px rgba(35, 209, 96, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+.status-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: badgeShine 2s infinite;
+}
+
+@keyframes badgeShine {
+    100% { left: 100%; }
 }
 
 /* Buttons */
@@ -149,46 +205,77 @@
 
 .btn-custom {
     padding: 15px 34px;
-    border-radius: 60px;
+    border-radius: 12px;
     font-size: 1rem;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.25s ease;
+    transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     border: none;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    z-index: -1;
+}
+
+.btn-custom::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+    z-index: -1;
+}
+
+.btn-custom:hover::after {
+    left: 100%;
 }
 
 .btn-primary-custom {
-    background: linear-gradient(135deg, #d2a36c 0%, #bb8440 100%);
+    background: linear-gradient(135deg, #5865F2 0%, #9B7EFA 100%);
     color: white;
 }
 
 .btn-primary-custom:hover {
-    background: linear-gradient(135deg, #bb8440 0%, #a47236 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 7px 22px rgba(191, 150, 96, 0.45);
+    background: linear-gradient(135deg, #4752c4 0%, #8a6de6 100%);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
 }
 
 .btn-outline-custom {
-    background: #ffffffcc;
-    border: 2px solid #d2a36c;
-    color: #5a3f2e;
+    background: rgba(30, 33, 57, 0.6);
+    border: 2px solid #5865F2;
+    color: #9B7EFA;
 }
 
 .btn-outline-custom:hover {
-    background: #d2a36c;
-    color: white;
+    background: rgba(88, 101, 242, 0.15);
+    border-color: #9B7EFA;
+    color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 7px 22px rgba(191, 150, 96, 0.38);
+    box-shadow: 0 8px 25px rgba(88, 101, 242, 0.3);
 }
 
 /* Divider */
 .divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, #e1d1bc, transparent);
+    background: linear-gradient(90deg, transparent, rgba(88, 101, 242, 0.4), transparent);
     margin: 32px 0;
 }
 
@@ -196,14 +283,15 @@
 .footer-note {
     text-align: center;
     font-size: 0.95rem;
-    color: #8c7864;
+    color: #8a8ab5;
     margin-top: 35px;
     padding-top: 25px;
-    border-top: 1px solid rgba(215, 200, 185, 0.5);
+    border-top: 1px solid rgba(88, 101, 242, 0.2);
+    font-weight: 400;
 }
 
 .footer-note i {
-    color: #d2a36c;
+    color: #9B7EFA;
     margin-right: 8px;
 }
 
@@ -216,11 +304,20 @@
         padding: 35px 25px;
         border-radius: 18px;
     }
-    .success-title { font-size: 1.85rem; }
+    .success-title { 
+        font-size: 1.85rem; 
+        background: linear-gradient(135deg, #ffffff 0%, #9B7EFA 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
     .info-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
+    }
+    .info-value {
+        text-align: left;
+        font-weight: 700;
     }
     .btn-custom {
         width: 100%;
@@ -234,6 +331,14 @@
     .navbar,
     .footer {
         display: none;
+    }
+    .booking-success-wrapper {
+        background: white !important;
+        color: black !important;
+    }
+    .success-card {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
     }
 }
         
@@ -345,11 +450,8 @@
                     </a>
                 </div>
 
-                <!-- Footer Note -->
-                <div class="footer-note">
-                    <i class="fa fa-info-circle"></i>
-                    A confirmation email has been sent to your inbox
-                </div>
+                
+                
             </div>
         </div>
     </div>
