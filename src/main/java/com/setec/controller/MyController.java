@@ -19,9 +19,9 @@ public class MyController {
 	public String home(Model mod) {
 		
 		Booked booked=new Booked(
-				1,"Bo Polin",
-				"087348554",
-				"bopolin3@gmail.com",
+				1,"Eang Sopheareak",
+				"086926628",
+				"sopheareak.me@gmail.com",
 				"11/25/2025",
 				"5:20 PM",
 				5
@@ -48,9 +48,9 @@ public class MyController {
 	@GetMapping({"/reservation"})
 	public String reservation(Model mod) {
 		Booked booked=new Booked(
-				1,"Bo Polin",
-				"087348554",
-				"bopolin3@gmail.com",
+				1,"Eang Sopheareak",
+				"086926628",
+				"sopheareak.me@gmail.com",
 				"11/25/2025",
 				"5:20 PM",
 				5
@@ -80,14 +80,14 @@ public class MyController {
 	@PostMapping("/success")
 	public String success(@ModelAttribute Booked booked) {
 		bookedrepo.save(booked);
-		String message = "Booking Comfirmed! ✅ " + "\n"+"\n" +
-						 "🆔ID: " + booked.getId() + "\n" +
-		                 "👤Name: " + booked.getName() + "\n" +
-		                 "📱Phone: " + booked.getPhonenumber() + "\n" +
-		                 "📧Email: " + booked.getEmail() + "\n" +
-		                 "📅 Date: " + booked.getDate() + "\n" +
-		                 "🕐Time: " + booked.getTime() + "\n" +
-		                 "👥Person: " + booked.getPerson();
+		String message = "📅 Booking Confirmation " + "\n"+"\n" +
+						 "🆔 ID: " + booked.getId() + "\n" +
+		                 "👤 Name: " + booked.getName() + "\n" +
+		                 "📱 Phone: " + booked.getPhonenumber() + "\n" +
+		                 "📧 Email: " + booked.getEmail() + "\n" +
+		                 "📅 Reservation Date: " + booked.getDate() + "\n" +
+		                 "🕐 Time: " + booked.getTime() + "\n" +
+		                 "👥 Person: " + booked.getPerson();
 		bot.sendMessage(message);
 		return "success";
 	}
